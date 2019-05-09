@@ -132,9 +132,8 @@
 * JAVA PRODUCER WITH KEYS
 
 
-    /**
-     * ProducerDemoKeys
-     */
+    //ProducerDemoKeys
+     
     package com.github.chema.kafka.tutorial1;
     import org.apache.kafka.clients.producer.*;
     import org.apache.kafka.common.serialization.StringSerializer;
