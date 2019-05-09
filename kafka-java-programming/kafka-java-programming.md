@@ -132,8 +132,7 @@
 * JAVA PRODUCER WITH KEYS
 
 
-    //ProducerDemoKeys
-     
+    //ProducerDemoKeys   
     package com.github.chema.kafka.tutorial1;
     import org.apache.kafka.clients.producer.*;
     import org.apache.kafka.common.serialization.StringSerializer;
@@ -204,5 +203,7 @@
     }
 
     - Let's start a kafka consumer
+    
         $ kafka-console-consumer --bootstrap-server quickstart.cloudera:9092 --topic kafka_demo --group my-third-application
+        
     - Then run the ProducerDemoKeys and see the results	
