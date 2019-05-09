@@ -29,7 +29,7 @@ public class ProducerDemoKeys {
             // create a producer record
 
             String topic = "kafka_demo";
-            String value = "Hello World" + Integer.toString(i);
+            String value = "Hello World " + Integer.toString(i);
             String key = "id_" + Integer.toString(i);
 
             ProducerRecord<String, String> record = new ProducerRecord<String,String>(topic,key,value);
