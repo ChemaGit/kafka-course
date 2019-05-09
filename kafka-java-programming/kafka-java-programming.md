@@ -18,9 +18,13 @@
 
 
     package com.github.chema.kafka.tutorial1;
+    
     public class ProducerDemo {
+    
 	    public static void main(String[] args) {
-		    System.out.println("hello world!")		    
+	    
+		    System.out.println("hello world!")		
+		        
 	    }   
     }
 
@@ -30,10 +34,15 @@
     
     
     package com.github.chema.kafka.tutorial1;
+    
     import org.apache.kafka.clients.producer.ProducerConfig;    
+    
     import org.apache.kafka.clients.producer.ProducerRecord;
+    
     import org.apache.kafka.common.serialization.StringSerializer;
+    
     import java.util.Properties;
+    
     public class ProducerDemo {
     
 	    public static void main(String[] args) {
@@ -64,7 +73,9 @@
     }
 
 	- Let's start a kafka consumer
+	
 		$ kafka-console-consumer --bootstrap-server quickstart.cloudera:9092 --topic first_topic --group my-third-application
+		
 	- Then run the ProducerDemo and see the results
 	
 * JAVA PRODUCER CALLBACKS
@@ -72,15 +83,21 @@
 
 
     package com.github.chema.kafka.tutorial1;
+    
     import org.apache.kafka.clients.producer.ProducerConfig;
+    
     import org.apache.kafka.clients.producer.ProducerRecord;
+    
     import org.apache.kafka.common.serialization.StringSerializer;
+    
     import org.slf4j.Logger;
+    
     import org.slf4j.LoggerFactory;
 
     import java.util.Properties;
 
     public class ProducerDemoWithCallBack {
+    
 	    public static void main(String[] args) {
 
 		    Logger logger = LoggerFactory.getLogger(ProducerDemoWithCallBack.class)
@@ -126,7 +143,9 @@
     }
 
 	- Let's start a kafka consumer
+	
 		$ kafka-console-consumer --bootstrap-server quickstart.cloudera:9092 --topic first_topic --group my-third-application
+		
 	- Then run the ProducerDemoWithCallBack and see the results
 
 * JAVA PRODUCER WITH KEYS
