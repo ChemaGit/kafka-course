@@ -134,15 +134,20 @@
 
     //ProducerDemoKeys   
     package com.github.chema.kafka.tutorial1;
+    
     import org.apache.kafka.clients.producer.*;
+    
     import org.apache.kafka.common.serialization.StringSerializer;
+    
     import org.slf4j.Logger;
+    
     import org.slf4j.LoggerFactory;
+    
     import java.util.Properties;
+    
     import java.util.concurrent.ExecutionException;
 
     public class ProducerDemoKeys {
-
         public static void main(String[] args) throws  InterruptedException, ExecutionException {
             final Logger logger;
             logger = LoggerFactory.getLogger(ProducerDemoKeys.class);
