@@ -147,7 +147,9 @@
     
     import java.util.concurrent.ExecutionException;
 
+
     public class ProducerDemoKeys {
+    
         public static void main(String[] args) throws  InterruptedException, ExecutionException {
             final Logger logger;
             logger = LoggerFactory.getLogger(ProducerDemoKeys.class);
@@ -206,6 +208,7 @@
             producer.close();
         }
     }
+
 
     - Let's start a kafka consumer
     
