@@ -299,23 +299,23 @@
 * JAVA CONSUMER INSIDE CONSUMER GROUP
 
 
-	package com.github.chema.kafka.tutorial1;
+	    package com.github.chema.kafka.tutorial1;
 
-	import org.apache.kafka.clients.consumer.*;
+	    import org.apache.kafka.clients.consumer.*;
 
- 	import org.apache.kafka.common.serialization.StringSerializer;
+ 	    import org.apache.kafka.common.serialization.StringSerializer;
 
-	import org.slf4j.Logger;
+	    import org.slf4j.Logger;
 
-	import org.slf4j.LoggerFactory;
+	    import org.slf4j.LoggerFactory;
 
-	import java.time.Duration;
+	    import java.time.Duration;
 
-	import java.util.Arrays;
+	    import java.util.Arrays;
 
-	import java.util.Properties;
+	    import java.util.Properties;
 
-	public class ConsumerDemoGroups {
+	    public class ConsumerDemoGroups {
 
 		public static void main(String[] args) {
 			// logger
