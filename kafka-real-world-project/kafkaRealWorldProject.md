@@ -2,9 +2,9 @@
 
 * Project Goal
 
-									     0 0 0
-	TWITTER ==>>>>>PRODUCER===>>>>>>>>>>  0 0  ===>>>>>CONSUMER==>>>>>>>>>ELASTIC SEARCH
-									     0 0 0
+							   0 0 0
+	- TWITTER ==>>PRODUCER==>>  0 0  ==>>CONSUMER==>>ELASTIC SEARCH
+							   0 0 0
 									                                
 									                                
 * Real-World Exercise:
