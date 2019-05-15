@@ -566,4 +566,14 @@
 			logger.info("Exiting the application");
 
 		}
-	}    	
+	}    
+	
+	
+* CLIENT BI-DIRECTIONAL COMPABILITY
+
+	- As of Kafka 0.10.2(introduced in July 2017), your clients & Kafka Brokers have a capability called bi-directional compatibility (because API calls are now versioned)
+	- This means:
+		- an OLDER client (ex 1.1) can talk to a NEWER broker(2.0)
+		- A NEWER client (ex 2.0) can talk to an OLDER broker (1.1)
+	- Bottom Line: always use the latest client library version if you can
+	- More Reading: https://www.confluent.io/blog/upgrading-apache-kafka-clients-just-got-easier/ 		
