@@ -64,9 +64,9 @@ public class ElasticSearchConsumer {
     public static RestHighLevelClient createClient() {
 
         // replace whith your own credentials
-        String hostname = "kafka-course-490018884.eu-west-1.bonsaisearch.net";
-        String username = "56ebmep3kq";
-        String password = "dbd7ofd83s";
+        String hostname = "xxxxxxxxxxxxxxxxxxxxx.bonsaisearch.net";
+        String username = "xxxxxxx";
+        String password = "xxxxxxxxxx";
 
         // don't if you run a local ES
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
