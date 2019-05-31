@@ -1,79 +1,39 @@
-# Consumer part 4 Manual commit of offsets
-
-	 - We are going to commit the offset manually
-		- // disable auto commit of offsets
-		- properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
-		- properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "10");
-		- logger.info("Received " + records.count() + " records");
-		- Thread.sleep(10); // introduce a small delay
-		- logger.info("Committing offsets....");
-		- consumer.commitSync();
-		- logger.info("Offsets have been committed");
-		- try { 
-		-	Thread.sleep(1000);
-		- } catch(InterruptedException e) {
-		- 	e.printStackTrace();
-		- }
-
+package com.github.chema.kafka.tutorial3;
 
 import com.google.gson.JsonParser;
-
 import org.apache.http.HttpHost;
-
 import org.apache.http.auth.AuthScope;
-
 import org.apache.http.auth.UsernamePasswordCredentials;
-
 import org.apache.http.client.CredentialsProvider;
-
 import org.apache.http.impl.client.BasicCredentialsProvider;
-
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-
 import org.apache.kafka.common.serialization.StringDeserializer;
-
 import org.elasticsearch.action.index.IndexRequest;
-
 import org.elasticsearch.action.index.IndexResponse;
-
 import org.elasticsearch.client.RequestOptions;
-
 import org.elasticsearch.client.RestClient;
-
 import org.elasticsearch.client.RestClientBuilder;
-
 import org.elasticsearch.client.RestHighLevelClient;
-
 import org.elasticsearch.common.xcontent.XContentType;
-
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-
 import java.time.Duration;
-
 import java.util.Arrays;
-
 import java.util.Properties;
 
 public class ElasticSearchConsumerIdempotent4 {
 
     public static RestHighLevelClient createClient() {
-
         // replace whith your own credentials
-        String hostname = "ppppppppppppppp.bonsaisearch.net";
-        String username = "kkkkkkkkkkk";
-        String password = "jjjjjjjjjjjjjj";
+        String hostname = "pppppppppppp.bonsaisearch.net";
+        String username = "cccccccccccc";
+        String password = "cccccccccccc";
 
         // don't if you run a local ES
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
@@ -92,7 +52,6 @@ public class ElasticSearchConsumerIdempotent4 {
     }
 
     public static KafkaConsumer<String,String> createConsumer(String topic) {
-
         // servers
         String bootstrapServers = "quickstart.cloudera:9092";
         // by change the groupId you basically reset the application
@@ -124,7 +83,6 @@ public class ElasticSearchConsumerIdempotent4 {
     }
 
     public static void main(String[] args) throws IOException {
-
         Logger logger = LoggerFactory.getLogger(ElasticSearchConsumerIdempotent4.class.getName());
         RestHighLevelClient client = createClient();
 
@@ -168,7 +126,3 @@ public class ElasticSearchConsumerIdempotent4 {
     }
 
 }
-
-	- Run the application: ElasticSearchConsumerIdempotent4 
-	- And see what happens
-	- $ kafka-consumer-groups --bootstrap-server quickstart.cloudera:9092 --group kafka-demo-elasticsearch --describe
