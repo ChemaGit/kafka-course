@@ -44,11 +44,17 @@ twitter.oauth.accessTokenSecret=xxx
 	- edit run.sh under connectors directory
 
 #!/usr/bin/env bash
+
 #run the twitter connector
+
 #connect-standalone connect-standalone.properties twitter.properties
+
 #OR (linux / mac OSX)
+
 /opt/cloudera/parcels/KAFKA-4.0.0-1.4.0.0.p0.1/lib/kafka/bin/connect-standalone.sh connect-standalone.properties twitter.properties
+
 #OR (Windows)
+
 #connect-standalone.bat connect-standalone.properties twitter.properties
 
 	- Run the consumer: $ kafka-console-consumer --bootstrap-server quickstart.cloudera:9092 --topic twitter_status_connect --from-beginning
