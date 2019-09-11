@@ -24,39 +24,24 @@
         </dependency>
 
 	- new package and new Java class ElasticSearchConsumer
-
+````java
 package com.github.chema.kafka.tutorial3;
 
 import org.apache.http.HttpHost;
-
 import org.apache.http.auth.AuthScope;
-
 import org.apache.http.auth.UsernamePasswordCredentials;
-
 import org.apache.http.client.CredentialsProvider;
-
 import org.apache.http.impl.client.BasicCredentialsProvider;
-
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-
 import org.elasticsearch.action.index.IndexRequest;
-
 import org.elasticsearch.action.index.IndexResponse;
-
 import org.elasticsearch.client.RequestOptions;
-
 import org.elasticsearch.client.RestClient;
-
 import org.elasticsearch.client.RestClientBuilder;
-
 import org.elasticsearch.client.RestHighLevelClient;
-
 import org.elasticsearch.common.xcontent.XContentType;
-
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 
 public class ElasticSearchConsumer {
@@ -102,7 +87,7 @@ public class ElasticSearchConsumer {
     }
 
 }
-
+````
 	- we create an index in the console
 	- PUT /twitter
 	- And run ElasticSearchConsumer

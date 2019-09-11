@@ -15,55 +15,31 @@
 		- 	e.printStackTrace();
 		- }
 
-
+````java
 import com.google.gson.JsonParser;
-
 import org.apache.http.HttpHost;
-
 import org.apache.http.auth.AuthScope;
-
 import org.apache.http.auth.UsernamePasswordCredentials;
-
 import org.apache.http.client.CredentialsProvider;
-
 import org.apache.http.impl.client.BasicCredentialsProvider;
-
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-
 import org.apache.kafka.common.serialization.StringDeserializer;
-
 import org.elasticsearch.action.index.IndexRequest;
-
 import org.elasticsearch.action.index.IndexResponse;
-
 import org.elasticsearch.client.RequestOptions;
-
 import org.elasticsearch.client.RestClient;
-
 import org.elasticsearch.client.RestClientBuilder;
-
 import org.elasticsearch.client.RestHighLevelClient;
-
 import org.elasticsearch.common.xcontent.XContentType;
-
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
-
 import java.time.Duration;
-
 import java.util.Arrays;
-
 import java.util.Properties;
 
 public class ElasticSearchConsumerIdempotent4 {
@@ -168,7 +144,7 @@ public class ElasticSearchConsumerIdempotent4 {
     }
 
 }
-
+````
 	- Run the application: ElasticSearchConsumerIdempotent4 
 	- And see what happens
 	- $ kafka-consumer-groups --bootstrap-server quickstart.cloudera:9092 --group kafka-demo-elasticsearch --describe

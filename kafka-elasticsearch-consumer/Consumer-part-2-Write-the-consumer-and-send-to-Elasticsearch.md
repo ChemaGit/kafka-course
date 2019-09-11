@@ -2,53 +2,30 @@
 
 	- Insert data from Kafka into ElasticSearch using a Consumer
 
-
+````java
 import org.apache.http.HttpHost;
-
 import org.apache.http.auth.AuthScope;
-
 import org.apache.http.auth.UsernamePasswordCredentials;
-
 import org.apache.http.client.CredentialsProvider;
-
 import org.apache.http.impl.client.BasicCredentialsProvider;
-
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-
 import org.apache.kafka.common.serialization.StringDeserializer;
-
 import org.elasticsearch.action.index.IndexRequest;
-
 import org.elasticsearch.action.index.IndexResponse;
-
 import org.elasticsearch.client.RequestOptions;
-
 import org.elasticsearch.client.RestClient;
-
 import org.elasticsearch.client.RestClientBuilder;
-
 import org.elasticsearch.client.RestHighLevelClient;
-
 import org.elasticsearch.common.xcontent.XContentType;
-
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
-
 import java.time.Duration;
-
 import java.util.Arrays;
-
 import java.util.Properties;
 
 public class ElasticSearchConsumer2 {
@@ -127,7 +104,7 @@ public class ElasticSearchConsumer2 {
     }
 
 }
-
+````
 
 	- Run the application: ElasticSearchConsumer2 
 
@@ -142,7 +119,7 @@ public class ElasticSearchConsumer2 {
 	- we get an ID every 1 second with a complete tweet into our elasticsearch cluster
 	- And now check an ID in the console of elasticsearch
 		- GET /twitter/tweets/6AEbA2sBNjbTEtniUQ2L
-
+````json
 {
   "_index": "twitter",
   "_type": "tweets",
@@ -271,7 +248,7 @@ public class ElasticSearchConsumer2 {
           0,
           275
         ],
-        "entities": {
+        "entities": { 
           "hashtags": [
             {
               "text": "WebDollar",
