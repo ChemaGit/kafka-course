@@ -1,19 +1,20 @@
 # Consumer part 4 Manual commit of offsets
-
-	 - We are going to commit the offset manually
-		- // disable auto commit of offsets
-		- properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
-		- properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "10");
-		- logger.info("Received " + records.count() + " records");
-		- Thread.sleep(10); // introduce a small delay
-		- logger.info("Committing offsets....");
-		- consumer.commitSync();
-		- logger.info("Offsets have been committed");
-		- try { 
-		-	Thread.sleep(1000);
-		- } catch(InterruptedException e) {
-		- 	e.printStackTrace();
-		- }
+````java
+// We are going to commit the offset manually
+// disable auto commit of offsets
+properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "10");
+logger.info("Received " + records.count() + " records");
+Thread.sleep(10); // introduce a small delay
+logger.info("Committing offsets....");
+consumer.commitSync();
+logger.info("Offsets have been committed");
+try { 
+    Thread.sleep(1000);
+} catch(InterruptedException e) {
+    e.printStackTrace();
+}
+````
 
 ````java
 import com.google.gson.JsonParser;
@@ -72,7 +73,7 @@ public class ElasticSearchConsumerIdempotent4 {
         // servers
         String bootstrapServers = "quickstart.cloudera:9092";
         // by change the groupId you basically reset the application
-        String groupId = "kafka-demo-elasticsearch";
+        String groupId = "kafkademo-elasticsearch";
 
         // create consumer configs
         Properties properties = new Properties();
@@ -145,6 +146,10 @@ public class ElasticSearchConsumerIdempotent4 {
 
 }
 ````
-	- Run the application: ElasticSearchConsumerIdempotent4 
-	- And see what happens
-	- $ kafka-consumer-groups --bootstrap-server quickstart.cloudera:9092 --group kafka-demo-elasticsearch --describe
+````text
+- Run the application: ElasticSearchConsumerIdempotent4 
+- And see what happens
+````
+````bash
+$ kafka-consumer-groups --bootstrap-server quickstart.cloudera:9092 --group kafka-demo-elasticsearch --describe
+````

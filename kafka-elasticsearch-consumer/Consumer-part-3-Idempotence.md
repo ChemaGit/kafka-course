@@ -1,34 +1,33 @@
 # Consumer part 3 Idempotence
-
-	- Our consumer is actually "at least once"
-	- We are going to do a idempotence consumer
-	- We need to tell ElasticSearch what id to use
-	- this is to make our consumer idempotent
-		- two strategies
-			- 1 Kafka generic ID: String id = record.topic() + "_" + record.partition() + "_" + record.offset();
-			- 2 twitter feed specific id: String id = extractIdFromTweet(record.value());
-			- we look for gson library: google --> java maven gson --> and get the maven dependency
-
+````text
+- Our consumer is actually "at least once"
+- We are going to do a idempotence consumer
+- We need to tell ElasticSearch what id to use
+- this is to make our consumer idempotent
+    - two strategies
+        - 1 Kafka generic ID: String id = record.topic() + "_" + record.partition() + "_" + record.offset();
+        - 2 twitter feed specific id: String id = extractIdFromTweet(record.value());
+        - we look for gson library: google --> java maven gson --> and get the maven dependency
+````
+````xml
 <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 <dependency>
     <groupId>com.google.code.gson</groupId>
     <artifactId>gson</artifactId>
     <version>2.8.5</version>
 </dependency>
-
+````
+````java
 private static JsonParser jsonParser = new JsonParser();
-
 private static String extractIdFromTweet(String tweetJson) {
 	// gson library	
 	return jsonParser.parse(tweetJson).getAsJsonObject().get("id_str").getAsString();
 }
-
 String id = extractIdFromTweet(record.value());
-
 IndexRequest indexRequest = new IndexRequest("twitter","tweets",id /*this is to make our consumer idempotent*/).source(record.value(), XContentType.JSON);
+````
 
-	- The complete class
-
+## The complete class
 ````java
 import com.google.gson.JsonParser;
 import org.apache.http.HttpHost;
@@ -140,31 +139,24 @@ public class ElasticSearchConsumerIdempotent {
                 }
             }
         }
-
         // close the client gracefully
         // client.close();
     }
-
 }
 ````
-	- Run the code and see the IDs
+````text
+- Run the code and see the IDs
 
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071572317298688
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071578768093184
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071588259848192
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071597709627392
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071600440127489
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071607247417344
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071611622068224
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071616567226368
-
 [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumerIdempotent - 1134071621856169984
 
-	- Check the console in bonsai elasticsearch: GET /twitter/tweets/1134071572317298688
+- Check the console in bonsai elasticsearch: GET /twitter/tweets/1134071572317298688
+````
+

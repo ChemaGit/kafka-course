@@ -1,7 +1,6 @@
 # Consumer part 2 Write the consumer and send to Elasticsearch
 
-	- Insert data from Kafka into ElasticSearch using a Consumer
-
+## Insert data from Kafka into ElasticSearch using a Consumer
 ````java
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -98,27 +97,28 @@ public class ElasticSearchConsumer2 {
                 }
             }
         }
-
         // close the client gracefully
         // client.close();
     }
-
 }
 ````
 
-	- Run the application: ElasticSearchConsumer2 
+````text
+- Run the application: ElasticSearchConsumer2 
 
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 6AEbA2sBNjbTEtniUQ2L
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 6gEbA2sBNjbTEtniWg1W
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 6wEbA2sBNjbTEtniYQ2v
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 7AEbA2sBNjbTEtniaA1R
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 7QEbA2sBNjbTEtnibA2H
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 7wEbA2sBNjbTEtnicw1M
-	- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 8AEbA2sBNjbTEtnieQ0D
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 6AEbA2sBNjbTEtniUQ2L
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 6gEbA2sBNjbTEtniWg1W
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 6wEbA2sBNjbTEtniYQ2v
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 7AEbA2sBNjbTEtniaA1R
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 7QEbA2sBNjbTEtnibA2H
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 7wEbA2sBNjbTEtnicw1M
+- [main] INFO com.github.chema.kafka.tutorial3.ElasticSearchConsumer2 - 8AEbA2sBNjbTEtnieQ0D
 
-	- we get an ID every 1 second with a complete tweet into our elasticsearch cluster
-	- And now check an ID in the console of elasticsearch
-		- GET /twitter/tweets/6AEbA2sBNjbTEtniUQ2L
+- we get an ID every 1 second with a complete tweet into our elasticsearch cluster
+- And now check an ID in the console of elasticsearch
+    - GET /twitter/tweets/6AEbA2sBNjbTEtniUQ2L
+````
+
 ````json
 {
   "_index": "twitter",
@@ -611,3 +611,4 @@ public class ElasticSearchConsumer2 {
     "timestamp_ms": "1558437276782"
   }
 }
+````

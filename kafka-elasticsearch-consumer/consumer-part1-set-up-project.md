@@ -1,29 +1,31 @@
 # Kafka Consumer Elasticsearch - Part 1
+````text
+- In Idea IDE -> new Module -> kafka-consumer-elasticsearch
+- We include dependencies in the pom.xml
+````
+````xml
+<dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>7.1.0</version>
+</dependency>
 
-	- In Idea IDE -> new Module -> kafka-consumer-elasticsearch
-	- We include dependencies in the pom.xml
+<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>2.0.0</version>
+    </dependency>
 
-	<dependency>
-    		<groupId>org.elasticsearch.client</groupId>
-    		<artifactId>elasticsearch-rest-high-level-client</artifactId>
-    		<version>7.1.0</version>
-	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.25</version>
+    </dependency>
+````
 
-	<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-
-	- new package and new Java class ElasticSearchConsumer
+## new package and new Java class ElasticSearchConsumer
 ````java
 package com.github.chema.kafka.tutorial3;
 
@@ -85,15 +87,16 @@ public class ElasticSearchConsumer {
         // close the client gracefully
         client.close();
     }
-
 }
 ````
-	- we create an index in the console
-	- PUT /twitter
-	- And run ElasticSearchConsumer
-	- We get an id: oBhm_moBtS95x-ir_dUN
-	- GET /twitter/tweets/oBhm_moBtS95x-ir_dUN
-
+````text
+- we create an index in the console
+- PUT /twitter
+- And run ElasticSearchConsumer
+- We get an id: oBhm_moBtS95x-ir_dUN
+- GET /twitter/tweets/oBhm_moBtS95x-ir_dUN
+````
+````json
 {
   "_index": "twitter",
   "_type": "tweets",
@@ -104,3 +107,5 @@ public class ElasticSearchConsumer {
     "foo": "bar"
   }
 }
+````
+

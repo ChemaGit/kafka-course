@@ -1,10 +1,11 @@
 # ELASTICSEARCH
-
-	- How elasticsearch works?
-	- If you are logged in your bonsai elasticsearch account, go to Interactive Console
-	- In the console we can run queries and it gets you information
-	- Query example: 
-
+````text
+- How elasticsearch works?
+- If you are logged in your bonsai elasticsearch account, go to Interactive Console
+- In the console we can run queries and it gets you information
+- Query example: 
+````
+````json
 {
   "name": "px6lx4Q",
   "cluster_name": "elasticsearch",
@@ -22,28 +23,31 @@
   },
   "tagline": "You Know, for Search"
 }
+````
+````text
+- Open a new tab and see the documentation page
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html
+- Run GET /_cat/health?v 	in the console
+- We get information about how our cluster is doing.
+- Run GET /_cat/nodes?v 	in the console
+- Run GET /_cat/indices?v	in the console
 
-	- Open a new tab and see the documentation page
-	- https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html
-	- Run GET /_cat/health?v 	in the console
-	- We get information about how our cluster is doing.
-	- Run GET /_cat/nodes?v 	in the console
-	- Run GET /_cat/indices?v	in the console
+- Create an index
+- PUT /twitter
+- Run GET /_cat/indices?v	in the console
 
-	- Create an index
-	- PUT /twitter
-	- Run GET /_cat/indices?v	in the console
-	
-	- Insert documents in our index
-		- PUT /twitter/tweets/1
-		{
-			"course": "Kafka for Beginners",
-			"instructor": "Stephane Maarek",
-			"module": "ElasticSearch"
-		}
-
-	- And we obtain: 
-
+- Insert documents in our index
+    - PUT /twitter/tweets/1
+````
+````json
+{
+    "course": "Kafka for Beginners",
+    "instructor": "Stephane Maarek",
+    "module": "ElasticSearch"
+}
+````
+````json
+// And we obtain: 
 {
   "_index": "twitter",
   "_type": "tweets",
@@ -58,6 +62,6 @@
   "_seq_no": 0,
   "_primary_term": 1
 }
-
-	- Delete an index
-		- DELETE /twitter
+// Delete an index
+// DELETE /twitter
+````
