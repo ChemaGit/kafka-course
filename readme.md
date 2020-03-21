@@ -1,3 +1,5 @@
+# KAFKA TRAINING WITH JAVA
+````text
 - Understand Apache Kafka Ecosystem, Architecture, Core Concepts and Operations
 - Master Concepts such as Topics, Partitions, Brokers, Producers, Consumers
 - Start a personal Kafka development environment
@@ -5,4 +7,6 @@
 - Create your Producers and Consumers in Java to interact with Kafka
 - Program a Real World Twitter Producer & ElasticSearch Consumer
 - Extended APIs Overview (Kafka Connect, Kafka Streams), Case Studies and Big Data Architecture
-- Practice and Understand Log Compaction 
+- Practice and Understand Log Compaction
+````
+

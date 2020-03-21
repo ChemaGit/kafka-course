@@ -1,34 +1,37 @@
 # SAFE PRODUCER - SUMMARY & DEMO
 
-# Kafka < 0.11
-	- acks=all(producer level)
-		- Ensures data is properly replicated before an ack is received
-	- min.insync.replicas=2(broker/topic level)
-		- Ensures two brokers in ISR at least have the data after an ack
-	- retries=MAX_INT(producer level)
-		- Ensures transient errors are retried indefinitely
-	- max.in.flight.requests.per.connection=1(producer level)
-		- Ensures only one request is tried at any time, preventing message re-ordering in case of retries
+## Kafka < 0.11
+````text
+- acks=all(producer level)
+    - Ensures data is properly replicated before an ack is received
+- min.insync.replicas=2(broker/topic level)
+    - Ensures two brokers in ISR at least have the data after an ack
+- retries=MAX_INT(producer level)
+    - Ensures transient errors are retried indefinitely
+- max.in.flight.requests.per.connection=1(producer level)
+    - Ensures only one request is tried at any time, preventing message re-ordering in case of retries
+````
 
-# Kafka >= 0.11
-	- enable.idempotence=true(producer level) + min.insync.replicas=2(broker/topic level)
-		- Implies acks=all, retries=MAX_INT,max.in.flight.requests.per.connection=5(default)
-		- while keeping ordering guarantees and improving performance!
+## Kafka >= 0.11
+````text
+- enable.idempotence=true(producer level) + min.insync.replicas=2(broker/topic level)
+    - Implies acks=all, retries=MAX_INT,max.in.flight.requests.per.connection=5(default)
+    - while keeping ordering guarantees and improving performance!
 
-	- Running a "safe producer" might impact throughput and latency, always test for your use case
+- Running a "safe producer" might impact throughput and latency, always test for your use case
+````
 
-# Creating a safe producer
+## Creating a safe producer
+````java
+// create a safe producer
+properties.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
+properties.setProperty(ProducerConfig.ACKS_CONFIG, "all");
+properties.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE));
+// kafka 2.0 >= 1.1 so we can keep this as 5. Use 1 otherwise
+properties.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
+````
 
-	// create a safe producer
-	properties.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
-	properties.setProperty(ProducerConfig.ACKS_CONFIG, "all");
-	properties.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE));
-	// kafka 2.0 >= 1.1 so we can keep this as 5. Use 1 otherwise
-	properties.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5"); 
-
-
-
-
+````java
 package com.github.chema.kafka.tutorial2;
 
 import com.google.common.collect.Lists;
@@ -130,7 +133,7 @@ public class TwitterProducer {
 		// These secrets should be read from a config file
 		Authentication hosebirdAuth = new OAuth1(consumerKey, consumerSecret, token, secret);
 
-		ClientBuilder builder = new ClientBuilder()
+		ClientBuilder builder = new ClientBuilder()ION, "5"); 
   		.name("Hosebird-Client-01")                              // optional: mainly for the logs
   		.hosts(hosebirdHosts)
   		.authentication(hosebirdAuth)
@@ -163,3 +166,4 @@ public class TwitterProducer {
 	}
 
 }
+````
