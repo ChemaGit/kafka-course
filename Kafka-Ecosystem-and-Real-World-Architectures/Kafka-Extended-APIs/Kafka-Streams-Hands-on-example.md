@@ -1,12 +1,12 @@
-# Kafka Streams Hands-on example
-
-	- Create a new maven module called: kafka-streams-filter-tweets
-	- Add dependencies to pom.xml
-	- google: maven kafka streams ==> org.apache.kafka >> kafka-streams - maven repository
-	- get 2.0.0 version and add it to pom.xml
-	- add org.slf4j and gson dependency too
-
-
+## Kafka Streams Hands-on example
+````text
+- Create a new maven module called: kafka-streams-filter-tweets
+- Add dependencies to pom.xml
+- google: maven kafka streams ==> org.apache.kafka >> kafka-streams - maven repository
+- get 2.0.0 version and add it to pom.xml
+- add org.slf4j and gson dependency too
+````
+````xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -47,31 +47,26 @@
     </dependencies>
     
 </project>
+````
 
+````text
+- we are ready to write our example
+- Under src-main-java create a new package called: com.github.chema.kafka.tutorial4 
+- We create a new Java class StreamsFilterTweets
+````
 
-	- we are ready to write our example
-	- Under src-main-java create a new package called: com.github.chema.kafka.tutorial4 
-	- We create a new Java class StreamsFilterTweets
-
-
+````java
 import com.google.gson.JsonParser;
-
 import org.apache.kafka.common.serialization.Serdes;
-
 import org.apache.kafka.streams.KafkaStreams;
-
 import org.apache.kafka.streams.StreamsBuilder;
-
 import org.apache.kafka.streams.StreamsConfig;
-
 import org.apache.kafka.streams.kstream.KStream;
-
 import java.util.Properties;
 
 public class StreamsFilterTweets {
     
     public static void main(String[] args) {
-
         // create properties
         Properties properties = new Properties();
         properties.setProperty(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,"quickstart.cloudera:9092");
@@ -114,9 +109,16 @@ public class StreamsFilterTweets {
 
     }
 }
+````
+````text
+- create a topic: 
 
+$kafka-topics --zookeeper quickstart.cloudera:2181 --topic important_tweets --create --partitions 3 --replication-factor 1
 
-	- create a topic: kafka-topics --zookeeper quickstart.cloudera:2181 --topic important_tweets --create --partitions 3 --replication-factor 1
-	- run the application StreamsFilterTweets 
-	- run TwitterProducer
-	- run a consumer with the created topic above: $ kafka-console-consumer --bootstrap-server quickstart.cloudera:9092 --topic important_tweets --from-beginning
+- run the application StreamsFilterTweets 
+- run TwitterProducer
+- run a consumer with the created topic above: 
+
+$ kafka-console-consumer --bootstrap-server quickstart.cloudera:9092 --topic important_tweets --from-beginning
+````
+

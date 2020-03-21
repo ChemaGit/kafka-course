@@ -1,66 +1,72 @@
-# Kafka security
+## Kafka security
 
-# The need for encryption, authentication & authorization in Kafka
+### The need for encryption, authentication & authorization in Kafka
+````text
+- Currently, any client can access your Kafka cluster (authentication)
+- The clients can publish / consume any topic data (authorisation)
+- All the data being sent is fully visible on the network (encryption)
 
-	- Currently, any client can access your Kafka cluster (authentication)
-	- The clients can publish / consume any topic data (authorisation)
-	- All the data being sent is fully visible on the network (encryption)
+- Someone could intercept data being sent
+- Someone could publish bad data / stael data
+- Someone could delete topics
 
-	- Someone could intercept data being sent
-	- Someone could publish bad data / stael data
-	- Someone could delete topics
+- All these reasons push for more security and an authentication model
+````
 
-	- All these reasons push for more security and an authentication model
+### Encryption in Kafka
+````text
+- Encrytion in Kafka ensures that the data exchanged between clients and brokers is secret to routers on the way
+- This is similar concept to an https website
 
-# Encryption in Kafka
+    - Kafka Client(producer/consumer) ----> U:Admin, P:supersecret ------> Kafka Brokers(Port 9092 - PLAINTEXT)
+    - Kafka Client(producer/consumer) ----> aGVsbG8gd29ybGQzZWh...(Ecryted data) ------> Kafka Brokers (Port 9093 - SSL)
+````
 
-	- Encrytion in Kafka ensures that the data exchanged between clients and brokers is secret to routers on the way
-	- This is similar concept to an https website
+### Authentication in Kafka
+````text
+- Authentication in Kafka ensures that only clients that can prove their identity can connect to our Kafka Cluster
+- This is similar concept to a login (username/password)
 
-		- Kafka Client(producer/consumer) ----> U:Admin, P:supersecret ------> Kafka Brokers(Port 9092 - PLAINTEXT)
-		- Kafka Client(producer/consumer) ----> aGVsbG8gd29ybGQzZWh...(Ecryted data) ------> Kafka Brokers (Port 9093 - SSL)
+    - Kafka Client -------> Authentication data ------> Kafka Broker -------> Verify authentication
+    - Kafka Client <------- Client is authenticated <------ Kafka Broker <------- Verify authentication
 
-# Authentication in Kafka
+- Authentication in Kafka can take a few forms
+- SSL Authentication: clients authenticate to Kafka using SSL certificates
+- SASL Authentication:
+    - PLAIN: clients authenticate using username / password (weak - easy to setup)
+    - Kerberos: such as Microsoft Active Directory (strong - hard to setup)
+    - SCRAM: username / password (strong - medium to setup)
+````
 
-	- Authentication in Kafka ensures that only clients that can prove their identity can connect to our Kafka Cluster
-	- This is similar concept to a login (username/password)
+### Authorisation in Kafka
+````text
+- Once a client is authenticated, Kafka can verify its identity
+- It still needs to be combined with authorisation, so that Kafka knows that
+    - "User alice can view topic finance"
+    - "User bob cannot view topic trucks"
+- ACL (Access Control Lists) have to be maintained by administration and onboard new users
+````
 
-		- Kafka Client -------> Authentication data ------> Kafka Broker -------> Verify authentication
-		- Kafka Client <------- Client is authenticated <------ Kafka Broker <------- Verify authentication
+### Putting it all together
+````text
+- You can mix
+    - Encryption
+    - Authentication
+    - Authorisation
 
-	- Authentication in Kafka can take a few forms
-	- SSL Authentication: clients authenticate to Kafka using SSL certificates
-	- SASL Authentication:
-		- PLAIN: clients authenticate using username / password (weak - easy to setup)
-		- Kerberos: such as Microsoft Active Directory (strong - hard to setup)
-		- SCRAM: username / password (strong - medium to setup)
+- This allows your Kafka clients to:
+    - Communicate securely to Kafka
+    - Clients would authenticate against Kafka
+    - Kafka can authorise clients to read / write to topics
+````
 
-# Authorisation in Kafka
-
-	- Once a client is authenticated, Kafka can verify its identity
-	- It still needs to be combined with authorisation, so that Kafka knows that
-		- "User alice can view topic finance"
-		- "User bob cannot view topic trucks"
-	- ACL (Access Control Lists) have to be maintained by administration and onboard new users
-
-# Putting it all together
-
-	- You can mix
-		- Encryption
-		- Authentication
-		- Authorisation
-
-	- This allows your Kafka clients to:
-		- Communicate securely to Kafka
-		- Clients would authenticate against Kafka
-		- Kafka can authorise clients to read / write to topics
-
-# State of the art of Kafka Security
-
-	- Kafka Security is fairly new (0.10)
-	- Kafka Security improves over time and becomes more flexible /easier to setup as time goes
-	- Currently, it is hard to setup Kafka Security
-	- Best support for Kafka Security for applications is with Java
+### State of the art of Kafka Security
+````text
+- Kafka Security is fairly new (0.10)
+- Kafka Security improves over time and becomes more flexible /easier to setup as time goes
+- Currently, it is hard to setup Kafka Security
+- Best support for Kafka Security for applications is with Java
+````
 
 
 
